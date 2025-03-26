@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Github, Twitter, MessagesSquare } from 'lucide-react';
@@ -57,25 +58,25 @@ const Footer = () => {
             <h3 className="font-medium mb-4">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
+                <a href="/documentation" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
                   Documentation
                   <ArrowUpRight size={14} />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
+                <a href="/api" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
                   API
                   <ArrowUpRight size={14} />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
+                <a href="/status" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
                   Status
                   <ArrowUpRight size={14} />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
                   Blog
                 </a>
               </li>
@@ -115,13 +116,13 @@ const Footer = () => {
           </p>
           
           <div className="mt-4 md:mt-0 flex space-x-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Privacy
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Terms
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/cookies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Cookies
             </a>
           </div>

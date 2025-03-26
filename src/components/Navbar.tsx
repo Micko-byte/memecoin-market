@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +22,19 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu when changing pages
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location]);
+
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
+  const isActive = (path: string) => {
+    if (path === '/' || path === '/home') {
+      return location.pathname === '/' || location.pathname === '/home';
+    }
+    return location.pathname === path;
+  };
 
   return (
     <nav 
@@ -38,16 +51,28 @@ const Navbar = () => {
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-sm font-medium transition-colors hover:text-primary/80">
+            <Link 
+              to="/home" 
+              className={`text-sm font-medium transition-colors ${isActive('/home') ? 'text-primary' : 'hover:text-primary/80'}`}
+            >
               Home
             </Link>
-            <Link to="/markets" className="text-sm font-medium transition-colors hover:text-primary/80">
+            <Link 
+              to="/markets" 
+              className={`text-sm font-medium transition-colors ${isActive('/markets') ? 'text-primary' : 'hover:text-primary/80'}`}
+            >
               Markets
             </Link>
-            <Link to="/trade" className="text-sm font-medium transition-colors hover:text-primary/80">
+            <Link 
+              to="/trade" 
+              className={`text-sm font-medium transition-colors ${isActive('/trade') ? 'text-primary' : 'hover:text-primary/80'}`}
+            >
               Trade
             </Link>
-            <Link to="/about" className="text-sm font-medium transition-colors hover:text-primary/80">
+            <Link 
+              to="/about" 
+              className={`text-sm font-medium transition-colors ${isActive('/about') ? 'text-primary' : 'hover:text-primary/80'}`}
+            >
               About
             </Link>
             <ThemeToggle />
@@ -72,30 +97,34 @@ const Navbar = () => {
       <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'}`}>
         <div className="glass-panel dark:bg-gray-800/90 px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <Link
-            to="/"
-            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary dark:hover:bg-gray-700"
-            onClick={() => setMobileMenuOpen(false)}
+            to="/home"
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/home') ? 'bg-secondary text-primary' : 'hover:bg-secondary dark:hover:bg-gray-700'
+            }`}
           >
             Home
           </Link>
           <Link
             to="/markets"
-            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary dark:hover:bg-gray-700"
-            onClick={() => setMobileMenuOpen(false)}
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/markets') ? 'bg-secondary text-primary' : 'hover:bg-secondary dark:hover:bg-gray-700'
+            }`}
           >
             Markets
           </Link>
           <Link
             to="/trade"
-            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary dark:hover:bg-gray-700"
-            onClick={() => setMobileMenuOpen(false)}
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/trade') ? 'bg-secondary text-primary' : 'hover:bg-secondary dark:hover:bg-gray-700'
+            }`}
           >
             Trade
           </Link>
           <Link
             to="/about"
-            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary dark:hover:bg-gray-700"
-            onClick={() => setMobileMenuOpen(false)}
+            className={`block px-3 py-2 rounded-md text-base font-medium ${
+              isActive('/about') ? 'bg-secondary text-primary' : 'hover:bg-secondary dark:hover:bg-gray-700'
+            }`}
           >
             About
           </Link>
